@@ -1,14 +1,11 @@
-
-import './App.css'
+import Amazon from "../Amazon";
 
 function App() {
-
-
   return (
-   <div>
-    <button className="btn btn-primary">Button</button>
-   </div>
-  )
+    <div className="bg-white h-screen">
+      <Amazon />
+    </div>
+  );
 }
 
-export default App
+export default App;
