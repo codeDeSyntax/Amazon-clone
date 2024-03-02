@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .para{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="div">
+
+    </div>
+    
+    <button onclick="start()">start</button>
+    <script>
+        const array = ['Josiah', 'Jessica', {sentence:'Koofi is coming'}];
+
+// Create a container div to hold the paragraphs
+// const containerDiv = document.createElement('div');
+
+
+
+
+function start() {
+    // Define the range for random numbers
+    const min = 2;
+    const max = 11;
+
+    setInterval(() => {
+        // Generate two random numbers
+        const fn = Math.floor(Math.random() * (max - min + 1)) + min;
+        const sn = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        // Calculate the sum
+        let added = sn + fn;
+
+        // Select the div element
+        let div = document.querySelector('.div');
+
+        // Change the background color based on the sum
+        if (added > 10) {
+            div.style.backgroundColor = 'green';
+        } else {
+            div.style.backgroundColor = 'red';
+        }
+    }, 1000);
+}
+
+
+
+    </script>
+</body>
+</html>

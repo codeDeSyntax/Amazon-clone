@@ -2,7 +2,7 @@ import Amazon from "../Amazon";
 
 function App() {
   return (
-    <div className="bg-white h-screen">
+    <div className="bg-[white] pb-10">
       <Amazon />
     </div>
   );
