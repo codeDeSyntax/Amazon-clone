@@ -20,7 +20,7 @@ const Products = () => {
                     <div key={product.id} className='flex flex-col h-60 w-40 shadow-xl border p-2 gap-1'>
                         <img src={product.image} alt="" className='size-20 ' />
                         <div className='w-full h-12'>
-                        <p className='text-[.7rem]'>{product.title}
+                        <p className='text-[.7rem]'>{ product.title}
                         </p>
                         </div>
                         <del>20% off</del>

@@ -1,7 +1,8 @@
+''
 const RefreshPage = () => {
   return (
     <div className="flex flex-col w-full">
-      <figure className="bg-[url(./sofa.jpg)] h-[35vh] bg-cover w-[95%] m-auto flex justify-end pr-4 items-center ">
+      <figure className="bg-[url(https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?q=80&w=906&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-[35vh] bg-cover w-[95%] m-auto flex justify-end pr-4 items-center " >
        <div className="flex flex-col gap-1">
        <p className="font-medium text-[1.2rem] text-[#141B24]">Refresh your space</p>
         <p className="text-[#1b222b] text-[.8rem]">shop the Home store</p>
