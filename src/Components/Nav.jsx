@@ -39,7 +39,7 @@ const Nav = ({ setQuery}) => {
 
   const cart = 4;
   return (
-    <nav className="navbar bg-[#141B24] flex flex-col pt-3 gap-4">
+    <nav className="navbar bg-[#141B24] flex flex-col pt-3 gap-4 fixed ">
       <div className="flex justify-between items-center w-full">
         <FaBars className="text-2xl" onClick={toggleSideBar} />
         <div>
