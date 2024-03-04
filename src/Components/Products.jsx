@@ -61,9 +61,9 @@ const Products = ({ query }) => {
 
   return (
     <section className=" w-full flex flex-col justify-center items-center">
-      <div className="my-4">
+      <div className="my-4 w-[95%] m-auto flex justify-center gap-1">
         {categories.map((category, index) => (
-          <button key={index} className="text-[.8rem] p-2 border" >{category}</button>
+          <button key={index} className="text-[.8rem] p-[3px] border " >{category}</button>
         ))}
       </div>
       <div className="grid grid-cols-2 gap-3  justify-center items-center ">
