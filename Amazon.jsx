@@ -11,7 +11,7 @@ const Amazon = () => {
     <Nav query={query} setQuery={setQuery}/>
     <RefreshPage/>
     <RecentSearch/>
-    <Products/>
+    <Products query={query} setQuery={setQuery}/>
     </div>
   )
 }

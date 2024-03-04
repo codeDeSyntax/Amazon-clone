@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-// import { FaStar } from 'react-icons/fa';
-
-const Products = () => {
+const Products = ({ query }) => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     axios
@@ -15,45 +14,81 @@ const Products = () => {
         setProducts(response.data);
       })
       .catch((error) =>
-        Response.json({ error, message: "something went wrong" })
+        console.error("Error fetching products:", error)
       );
+
+    FetchCategories();
   }, []);
 
-  return (
-    <section className=" w-full flex justify-center items-center">
-      <div className="grid grid-cols-2 gap-3  justify-center items-center ">
-        {products.map((product) => {
-          return (
-            <div
-              key={product.id}
-              className="flex flex-col h-60 w-40 shadow-xl border p-2 "
-            >
-              <img src={product.image} alt="" className="size-20 " />
-              <div className="w-full h-12">
-                <p className="text-[.7rem] mt-1">
-                  {product.title.substr(0, 30)}
-                </p>
-              </div>
-              <del>20% off</del>
-              <p>
-                Ghc{" "}
-                <span className="font-bold text-[#141B24]">
-                  {" "}
-                  {product.price}
-                </span>
-              </p>
+  const FetchCategories = () => {
+    axios
+      .get("https://fakestoreapi.com/products/categories")
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) =>
+        console.error("Error fetching categories:", error)
+      );
+  };
 
-              {/* <div><FaStar/> *{ Math.floor(product.rating.rate)}</div> */}
-              <div className="flex items-center gap-1">
-                <FaStar className="text-[#FF9900]" />
-                <FaStar className="text-[#FF9900]" />
-                <FaStar className="text-[#FF9900]" />
-                <FaStar />
-                <FaStar />
+  const Placesearch = () => {
+    const FilteredProducts = products.filter((product) => {
+      return product.title.toLowerCase().includes(query.toLowerCase());
+    });
+
+    return (
+      FilteredProducts.map((product) => (
+        <div key={product.id} className="flex flex-col h-60 w-40 shadow-xl border p-2 ">
+          <img src={product.image} alt="" className="size-20 " />
+          <div className="w-full h-12">
+            <p className="text-[.7rem] mt-1">
+              {product.title.substr(0, 30)}
+            </p>
+          </div>
+          <del>20% off</del>
+          <p>Ghc <span className="font-bold text-[#141B24]"> {product.price}</span></p>
+          <div className="flex items-center gap-1">
+            <FaStar className="text-[#FF9900]" />
+            <FaStar className="text-[#FF9900]" />
+            <FaStar className="text-[#FF9900]" />
+            <FaStar />
+            <FaStar />
+          </div>
+        </div>
+      ))
+    );
+  };
+
+  return (
+    <section className=" w-full flex flex-col justify-center items-center">
+      <div className="my-4">
+        {categories.map((category, index) => (
+          <button key={index} className="text-[.8rem] p-2 border" >{category}</button>
+        ))}
+      </div>
+      <div className="grid grid-cols-2 gap-3  justify-center items-center ">
+        {query ? <Placesearch /> :
+          products.map((product) => {
+            return (
+              <div key={product.id} className="flex flex-col h-60 w-40 shadow-xl border p-2 ">
+                <img src={product.image} alt="" className="size-20 " />
+                <div className="w-full h-12">
+                  <p className="text-[.7rem] mt-1">
+                    {product.title.substr(0, 30)}
+                  </p>
+                </div>
+                <del>20% off</del>
+                <p>Ghc <span className="font-bold text-[#141B24]"> {product.price}</span></p>
+                <div className="flex items-center gap-1">
+                  <FaStar className="text-[#FF9900]" />
+                  <FaStar className="text-[#FF9900]" />
+                  <FaStar className="text-[#FF9900]" />
+                  <FaStar />
+                  <FaStar />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </section>
   );
@@ -61,6 +96,6 @@ const Products = () => {
 
 Products.propTypes = {
   query: PropTypes.string.isRequired,
-  setQuery: PropTypes.func.isRequired,
 };
+
 export default Products;

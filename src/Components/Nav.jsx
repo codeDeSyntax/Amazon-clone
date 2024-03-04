@@ -1,50 +1,18 @@
 import { useState } from "react";
 import { FaBars, FaSearch, FaTimes } from "react-icons/fa";
-import { FaShoppingCart ,FaStar } from "react-icons/fa";
+import { FaShoppingCart  } from "react-icons/fa";
 import { useEffect } from "react";
 import axios from "axios";
 import PropTypes from 'prop-types';
 
-const Nav = ({query , setQuery}) => {
+const Nav = ({ setQuery}) => {
   const [sideBar, setSideBar] = useState(false);
   
-  const [products, setProducts] = useState([]);
+  const [ setProducts] = useState([]);
   // const [selectedCategory, setSelectedCategory] = useState(null);
 
   const toggleSideBar = () => {
     setSideBar(true);
-  };
-
-   const GrabInput = (e) => {
-    setQuery(e.target.value);
-
-    const filteredProducts = products.filter((product) => {
-      product.title.localeCompare(query)
-    })
-
-    return(
-      filteredProducts.map((product) =>(
-        <div key={product.id} className='flex flex-col h-60 w-40 shadow-xl border p-2 '>
-        <img src={product.image} alt="" className='size-20 ' />
-        <div className='w-full h-12'>
-        <p className='text-[.7rem] mt-1'>{product.title.substr(0,30)}
-        </p>
-        </div>
-        <del>20% off</del>
-        <p>Ghc <span className='font-bold text-[#141B24]'> {product.price}</span></p>
-
-        {/* <div><FaStar/> *{ Math.floor(product.rating.rate)}</div> */}
-        <div className='flex items-center gap-1'>
-            <FaStar className='text-[#FF9900]' />
-            <FaStar className='text-[#FF9900]'/>
-            <FaStar className='text-[#FF9900]'/>
-            <FaStar/>
-            <FaStar/>
-        </div>
-        
-    </div>
-      ))
-    )
   };
 
   useEffect(() => {
@@ -55,6 +23,11 @@ const Nav = ({query , setQuery}) => {
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+  
+
+  const grabInput = (e) => {
+    setQuery(e.target.value);
+  }
 
   // const handleCategoryChange = (category) => {
   //   setSelectedCategory(category);
@@ -91,10 +64,10 @@ const Nav = ({query , setQuery}) => {
             type="text"
             className="p-3 w-[80%] bg-[white]"
             placeholder="search.."
-            onChange={GrabInput}
+            onChange={grabInput}
           />
           <button className="p-4 bg-[#FF9900] text-[white] w-[15%]">
-            <FaSearch />{query}
+            <FaSearch />
           </button>
         </div>
       </div>
