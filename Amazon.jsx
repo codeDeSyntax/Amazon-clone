@@ -7,7 +7,7 @@ import { useState } from "react"
 const Amazon = () => {
   const [query, setQuery] = useState("");
   return (
-    <div className="">
+    <div className="bg-white">
     <Nav query={query} setQuery={setQuery}/>
     <RefreshPage/>
     <RecentSearch/>

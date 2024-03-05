@@ -2,7 +2,7 @@
 
 const Card = () => {
   return (
-    <div>Card</div>
+    <p>there are no products to display</p>
   )
 }
 
