@@ -63,7 +63,7 @@ const Products = ({ query }) => {
 
     return filteredProducts.map((product) => (
       <div key={product.id} className="flex flex-col h-62 w-40 shadow-xl border p-2 ">
-        <img src={product.image} alt="" className="size-20 " />
+        <img src={product.image} alt="" className="h-26 w-16 " />
         <div className="w-full h-12">
           <p className="text-[.7rem] mt-1">
             {product.title.substr(0, 30)}
