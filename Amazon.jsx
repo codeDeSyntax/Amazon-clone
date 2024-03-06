@@ -6,9 +6,10 @@ import { useState } from "react"
 
 const Amazon = () => {
   const [query, setQuery] = useState("");
+  const [productID, setProductID] = useState(null);
   return (
     <div className="bg-white">
-    <Nav query={query} setQuery={setQuery}/>
+    <Nav query={query} setQuery={setQuery} productID={productID} setProductID={setProductID}/>
     <RefreshPage/>
     <RecentSearch/>
     <Products query={query} setQuery={setQuery}/>
