@@ -3,7 +3,7 @@ import  { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 
-const AutoTypingText = ({ text, speed }) => {
+const AutoTypingText = ({ text, speed  }) => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -27,7 +27,8 @@ const AutoTypingText = ({ text, speed }) => {
 
 AutoTypingText.propTypes = {
     text: PropTypes.string.isRequired,
-    speed: PropTypes.number.isRequired
+    speed: PropTypes.number.isRequired,
+    cart: PropTypes.array
 }
 
 export default AutoTypingText;

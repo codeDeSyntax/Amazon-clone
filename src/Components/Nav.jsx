@@ -1,28 +1,32 @@
 import { useState } from "react";
-import { FaBars, FaSearch, FaTimes } from "react-icons/fa";
+import { FaBars, FaSearch, FaStar, FaTimes } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { useEffect } from "react";
-import axios from "axios";
+// import { useEffect } from "react";
+// import axios from "axios";
 import PropTypes from "prop-types";
 
-const Nav = ({ query, setQuery, setProductID }) => {
+const Nav = ({ query, setQuery, setProductID , displayCart , setDisplayCart , cart }) => {
   const [sideBar, setSideBar] = useState(false);
 
-  const [setProducts] = useState([]);
+  // const [products , setProducts] = useState([]);
   // const [selectedCategory, setSelectedCategory] = useState(null);
 
   const toggleSideBar = () => {
     setSideBar(true);
   };
 
-  useEffect(() => {
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  const toggleCart = () => {
+    setDisplayCart(!displayCart)
+  }
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://fakestoreapi.com/products")
+  //     .then((response) => {
+  //       setProducts(response.data);
+  //     })
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
 
   const grabInput = (e) => {
     setQuery(e.target.value);
@@ -37,7 +41,7 @@ const Nav = ({ query, setQuery, setProductID }) => {
   //   ? products.filter((product) => product.category === selectedCategory)
   //   : products;
 
-  const cart = 4;
+
   return (
     <nav className="navbar bg-[#141B24] flex flex-col pt-3 gap-4 fixed md:px-4 ">
       <div className="flex justify-between items-center w-full">
@@ -63,11 +67,25 @@ const Nav = ({ query, setQuery, setProductID }) => {
 
         <div className="flex flex-col justify-center items-center">
           <p className="font-bold text-[10px]  bg-[white] rounded-full w-4 text-center text-[#141B24]">
-            {cart}
+            {cart.length}
           </p>
           <FaShoppingCart
             className={`text-[#FF9900] text-xl ${cart > 0 && "animate-pulse"}`}
+            onClick={toggleCart}
           />
+        </div>
+
+        <div className={`${displayCart ? 'block' : 'hidden'} absolute h-[20vh] bg-white shadow-md left-[38vw] top-14 w-[60%] rounded-md z-10 p-2 flex flex-col justify-center items-center`}>
+         <div className="flex items-center gap-1">
+          <FaStar className="text-[#FF9900]"/>
+          <FaStar className="text-[#141B24]" /> 
+          {cart.length} items in cart 
+          <FaStar className="text-[#FF9900]"/>
+          <FaStar className="text-[#141B24]"/>
+         </div>
+          <p className="font-bold">Total : GHC {cart.reduce((total, product) => total + product.price, 0)}</p> 
+
+          <button className="bg-[#FF9900] text-center text-white w-[40%] p-1 rounded-sm ">Pay</button>
         </div>
       </div>
 
@@ -120,5 +138,8 @@ Nav.propTypes = {
   query: PropTypes.string,
   setQuery: PropTypes.func,
   setProductID: PropTypes.func,
+  displayCart: PropTypes.bool,
+  setDisplayCart: PropTypes.func,
+  cart: PropTypes.array,
 };
 export default Nav;
