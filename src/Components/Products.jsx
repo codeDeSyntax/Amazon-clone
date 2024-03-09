@@ -5,12 +5,10 @@ import PropTypes from "prop-types";
 import "../../src/mediaQueries";
 import Cart from "./Cart";
 
-
-const Products = ({ query, productID , cart , setCart , displayCart }) => {
+const Products = ({ query, productID, cart, setCart, displayCart }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  
 
   useEffect(() => {
     FetchProducts();
@@ -58,12 +56,11 @@ const Products = ({ query, productID , cart , setCart , displayCart }) => {
     setSelectedCategory("");
   };
 
-  
   const AddToCart = (item) => {
-    setCart([...cart , item])
+    setCart([...cart, item]);
 
-    console.log(cart)
-  }
+    console.log(cart);
+  };
 
   const renderProducts = () => {
     let filteredProducts = products;
@@ -117,8 +114,10 @@ const Products = ({ query, productID , cart , setCart , displayCart }) => {
             <FaStar />
           </div>
           <div className="w-full flex justify-center ">
-            <button className="p-1 bg-[#FF9900] text-black font-bold w-40 rounded-md mt-2"
-            onClick={() => AddToCart(product) }>
+            <button
+              className="p-1 bg-[#FF9900] text-black font-bold w-40 rounded-md mt-2"
+              onClick={() => AddToCart(product)}
+            >
               🛒+
             </button>
           </div>
@@ -152,10 +151,8 @@ const Products = ({ query, productID , cart , setCart , displayCart }) => {
       </div>
       <div>{}</div>
       {/* Render products */}
-      <div className="grid xxs:grid-cols-1 cs:grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-1 md:gap-2 justify-center items-center mt-10 ">
-            {
-            displayCart ? <Cart cart={cart}/> : renderProducts()
-            }
+      <div className=" grid xxs:grid-cols-1 cs:grid-cols-2 gap-1     sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-1 md:gap-2  mt-10 ">
+        {displayCart ? <Cart cart={cart} /> : renderProducts()}
       </div>
     </section>
   );

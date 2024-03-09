@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FaBars, FaSearch, FaStar, FaTimes } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaBars, FaSearch, FaStar, FaArrowLeft , FaTimes } from "react-icons/fa";
+import { FaShoppingCart} from "react-icons/fa";
 // import { useEffect } from "react";
 // import axios from "axios";
 import PropTypes from "prop-types";
@@ -69,10 +69,20 @@ const Nav = ({ query, setQuery, setProductID , displayCart , setDisplayCart , ca
           <p className="font-bold text-[10px]  bg-[white] rounded-full w-4 text-center text-[#141B24]">
             {cart.length}
           </p>
-          <FaShoppingCart
-            className={`text-[#FF9900] text-xl ${cart > 0 && "animate-pulse"}`}
-            onClick={toggleCart}
-          />
+          
+        <div onClick={(e) => {
+          e.preventDefault();
+          setDisplayCart(!displayCart)
+        }}>
+           
+        {
+          !displayCart ?  <FaShoppingCart
+          className={`text-[#FF9900] text-xl ${cart > 0 && "animate-pulse"}`}
+          onClick={toggleCart}
+        /> :
+        <FaArrowLeft />
+        }
+        </div>
         </div>
 
         <div className={`${displayCart ? 'block' : 'hidden'} absolute h-[20vh] bg-white shadow-md left-[38vw] top-14 w-[60%] rounded-md z-10 p-2 flex flex-col justify-center items-center`}>

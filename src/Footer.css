@@ -1,0 +1,18 @@
+li{
+    list-style: none;
+}
+
+h2{
+    color:white;
+    padding:5px;
+    
+}
+
+ul>li>a{
+    font-size: .8rem;
+    
+}
+
+ul>li>a:hover{
+    text-decoration: underline;
+}

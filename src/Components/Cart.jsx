@@ -9,7 +9,7 @@ const Cart = ({ cart }) => {
      cart.map((product) => (
         <div
           key={product.id}
-          className="flex flex-col h-62 xxs:w-[80vw] cs:w-[100%] xs:w-[45vw] sm:w-48 lg:w-66  md:h-72  md:w-64  xl:w-68 md:shadow-none border md:hover:bg-[#141B24] p-2  md:justify-center items-center md:hover:scale-125 hover:z-110 transition lg:hover:rounded-md m-auto "
+          className="flex flex-col h-62 xxs:w-[80vw] cs:w-[90%] xs:w-[45vw] sm:w-48 lg:w-66  md:h-72  md:w-64  xl:w-68 md:shadow-none border md:hover:bg-[#141B24] p-2  md:justify-center items-center md:hover:scale-125 hover:z-110 transition lg:hover:rounded-md m-auto "
         >
           <img
             src={product.image}
