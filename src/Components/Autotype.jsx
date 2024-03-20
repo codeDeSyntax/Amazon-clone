@@ -8,8 +8,8 @@ const AutoTypingText = ({ text, speed }) => {
   useEffect(() => {
     if (currentIndex < text.length) {
       const timer = setTimeout(() => {
-        setDisplayText((prevText) => prevText + text[currentIndex]);
         setCurrentIndex((prevIndex) => prevIndex + 1);
+        setDisplayText((prevText) => prevText + text[currentIndex]);
       }, speed);
 
       return () => {

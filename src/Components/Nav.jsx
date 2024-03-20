@@ -1,11 +1,18 @@
 import { useState } from "react";
-import { FaBars, FaSearch, FaStar, FaArrowLeft , FaTimes } from "react-icons/fa";
-import { FaShoppingCart} from "react-icons/fa";
+import { FaBars, FaSearch, FaArrowLeft, FaTimes } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 // import { useEffect } from "react";
 // import axios from "axios";
 import PropTypes from "prop-types";
 
-const Nav = ({ query, setQuery, setProductID , displayCart , setDisplayCart , cart }) => {
+const Nav = ({
+  query,
+  setQuery,
+  setProductID,
+  displayCart,
+  setDisplayCart,
+  cart,
+}) => {
   const [sideBar, setSideBar] = useState(false);
 
   // const [products , setProducts] = useState([]);
@@ -16,9 +23,10 @@ const Nav = ({ query, setQuery, setProductID , displayCart , setDisplayCart , ca
   };
 
   const toggleCart = () => {
-    setDisplayCart(!displayCart)
-  }
+    setDisplayCart(!displayCart);
+  };
 
+  
   // useEffect(() => {
   //   axios
   //     .get("https://fakestoreapi.com/products")
@@ -41,11 +49,13 @@ const Nav = ({ query, setQuery, setProductID , displayCart , setDisplayCart , ca
   //   ? products.filter((product) => product.category === selectedCategory)
   //   : products;
 
-
   return (
-    <nav className="navbar bg-[#141B24] flex flex-col pt-3 gap-4 fixed md:px-4 ">
+    <nav className="navbar bg-[#141B24] flex flex-col pt-3 gap-4 fixed md:px-4 z-50 ">
       <div className="flex justify-between items-center w-full">
-        <FaBars className="text-2xl  md:hidden sm:hidden" onClick={toggleSideBar} />
+        <FaBars
+          className="text-2xl  md:hidden sm:hidden"
+          onClick={toggleSideBar}
+        />
         <div>
           <figure className="flex items-center">
             <img src="Amazon1.jpg" alt="logo" className="h-8 " />
@@ -69,23 +79,27 @@ const Nav = ({ query, setQuery, setProductID , displayCart , setDisplayCart , ca
           <p className="font-bold text-[10px]  bg-[white] rounded-full w-4 text-center text-[#141B24]">
             {cart.length}
           </p>
-          
-        <div onClick={(e) => {
-          e.preventDefault();
-          setDisplayCart(!displayCart)
-        }}>
-           
-        {
-          !displayCart ?  <FaShoppingCart
-          className={`text-[#FF9900] text-xl ${cart > 0 && "animate-pulse"}`}
-          onClick={toggleCart}
-        /> :
-        <FaArrowLeft />
-        }
-        </div>
+
+          <div
+            onClick={(e) => {
+              e.preventDefault();
+              setDisplayCart(!displayCart);
+            }}
+          >
+            {!displayCart ? (
+              <FaShoppingCart
+                className={`text-[#FF9900] text-xl ${
+                  cart > 0 && "animate-pulse"
+                }`}
+                onClick={toggleCart}
+              />
+            ) : (
+              <FaArrowLeft />
+            )}
+          </div>
         </div>
 
-        <div className={`${displayCart ? 'block' : 'hidden'} absolute h-[20vh] bg-white shadow-md left-[38vw] top-14 w-[60%] rounded-md z-10 p-2 flex flex-col justify-center items-center`}>
+        {/* <div className={`${displayCart ? 'block' : 'hidden'} absolute h-[20vh] bg-white shadow-md left-[38vw] top-14 w-[60%] rounded-md z-10 p-2 flex flex-col justify-center items-center`}>
          <div className="flex items-center gap-1">
           <FaStar className="text-[#FF9900]"/>
           <FaStar className="text-[#141B24]" /> 
@@ -96,7 +110,7 @@ const Nav = ({ query, setQuery, setProductID , displayCart , setDisplayCart , ca
           <p className="font-bold">Total : GHC {cart.reduce((total, product) => total + product.price, 0)}</p> 
 
           <button className="bg-[#FF9900] text-center text-white w-[40%] p-1 rounded-sm ">Pay</button>
-        </div>
+        </div> */}
       </div>
 
       <div className="w-full flex justify-center items-center md:hidden">
@@ -122,22 +136,6 @@ const Nav = ({ query, setQuery, setProductID , displayCart , setDisplayCart , ca
               }}
             />
           </div>
-          {/* <label>
-            <input type="radio" name="" id="" onClick={handleCategoryChange} />
-            <span>All Categories</span>
-          </label>
-          <label>
-            <input type="radio" name="" id="" onClick={handleCategoryChange} />
-            <span>Electronics</span>
-          </label>
-          <label>
-            <input type="radio" name="" id="" onClick={handleCategoryChange} />
-            <span>Mens clothing</span>
-          </label>
-          <label>
-            <input type="radio" name="" id="" onClick={handleCategoryChange} />
-            <span>womens clothing</span>
-          </label> */}
         </div>
       )}
     </nav>

@@ -1,57 +1,99 @@
-import { FaStar } from "react-icons/fa";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { FaTrash } from "react-icons/fa";
+const Cart = ({ cart, setCart }) => {
+  const removeFromCart = (id) => {
+    let filteredcart = cart.filter((product) => {
+      return product.id !== id;
+    });
+    setCart(filteredcart);
+  };
 
-const Cart = ({ cart }) => {
   return (
-   <>
-   
-   {
-     cart.map((product) => (
-        <div
-          key={product.id}
-          className="flex flex-col h-62 xxs:w-[80vw] cs:w-[90%] xs:w-[45vw] sm:w-48 lg:w-66  md:h-72  md:w-64  xl:w-68 md:shadow-none border md:hover:bg-[#141B24] p-2  md:justify-center items-center md:hover:scale-125 hover:z-110 transition lg:hover:rounded-md m-auto "
-        >
-          <img
-            src={product.image}
-            alt=""
-            className=" size-20 h-[90px] w-[95px] md:h-[100px] md:w-[100px] "
-          />
-          <div className="w-full h-12">
-            <p className="text-[.7rem] mt-1 xxs:text-center">
-              {product.title.substr(0, 30)}
-            </p>
-          </div>
-  
-          <div className="w-full  flex-grow xxs:text-center">
-            <del className="text-[.7rem] md:text-center">20% off</del>
-            <p className="xxs:text-center">
-              Ghc{" "}
-              <span className="font-bold text-[#4f5153] text-[.8rem] ">
-                {" "}
-                {product.price}
-              </span>
-            </p>
-            <div className="flex items-center gap-1 xxs:justify-center ">
-              <FaStar className="text-[#FF9900]" />
-              <FaStar className="text-[#FF9900]" />
-              <FaStar className="text-[#FF9900]" />
-              <FaStar />
-              <FaStar />
-            </div>
-            <div className="w-full flex justify-center ">
-              <button className="p-1 bg-[#FF9900] text-black font-bold w-40 rounded-md mt-2">
-                🛒 Remove
-              </button>
-            </div>
-          </div>
+    <div className=" w-[95%] m-auto flex sm:flex-row  flex-col-reverse">
+      <div className=" md:w-[70%] p-4 flex flex-col gap-4  ">
+        <div className="p-3 border rounded-t-md ">
+          <h2 className="text-gray-600">items ({cart.length})</h2>
         </div>
-      ))
-   }
-   </>
+        {cart.map((product) => (
+          <div
+            key={product.id}
+            className="w-[100%] py-5 px-10 flex flex-col md:flex-row justify-between  border-b  "
+          >
+            <div className="md:w-[40%]  flex items-center justify-center">
+              <figure className="w-[80%]">
+                <img
+                  src={product.image}
+                  alt=""
+                  className=" size-20  md:h-[100px] md:w-[100px] "
+                />
+              </figure>
+              <div className="w-full h-12 flex flex-col">
+                <p className="text-[.8rem] mt-1  text-gray-700 font-mono">
+                  {product.title.substr(0, 30)}
+                </p>
+                <button
+                  className="flex text-center items-center gap-2 text-[#ff9900]"
+                  onClick={() => {
+                    removeFromCart(product.id);
+                  }}
+                >
+                  <FaTrash /> Remove
+                </button>
+              </div>
+            </div>
+
+            <div className=" xxs:text-center flex ">
+              <del className="hidden sm:block text-[.7rem] md:text-[.9rem] md:text-center">
+                20% off
+              </del>
+              <p className="xxs:text-center mt-5">
+                Ghc{" "}
+                <span className="font-bold text-[#4f5153] text-[.8rem] md:text-[1.1rem]">
+                  {" "}
+                  {product.price}
+                </span>
+              </p>
+
+              <div className="w-full flex justify-center gap-5 mt-5 sm:mt-0">
+                <button className=" h-10 w-10  bg-[#ff9900] text-white text-center text-2xl uppercase font-semibold  rounded-md mt-2">
+                  -
+                </button>
+                <button className="p-1 bg-[#ff9900] text-white font-bold text-center  h-10 w-10 rounded-md mt-2">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="w-[100%] md:w-[30%] p-4 m-auto">
+        <div className="w-[90%] md:h-80 border-0 sm:border px-3 flex flex-col gap-2 m-auto">
+          <p className=" font-sefif p-3 bg-orange-100 m-1">Cart summary</p>
+          <hr />
+          <label htmlFor="" className="flex gap-3">
+            Subtotal:
+            <p className="font-bold">
+              {" "}
+              Ghc {cart.reduce((total, product) => total + product.price, 0)}
+            </p>
+          </label>
+          <p>Discount: 0%</p>
+          <del className="p-1 text-[.7rem] bg-orange-100 w-40">
+            No free products
+          </del>
+          <button className="bg-[#FF9900] text-center text-white w-[90%] p-1 rounded-sm ">
+            Checkout Ghc{" "}
+            {cart.reduce((total, product) => total + product.price, 0)}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
 Cart.propTypes = {
-    cart: PropTypes.array.isRequired
-}
+  cart: PropTypes.array.isRequired,
+  setCart: PropTypes.func.isRequired,
+};
 export default Cart;

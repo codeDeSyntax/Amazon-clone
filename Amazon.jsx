@@ -5,6 +5,7 @@ import RefreshPage from "./src/Components/RefreshPage";
 import { useState } from "react";
 import Footer from "./src/Components/Footer";
 
+
 const Amazon = () => {
   const [query, setQuery] = useState("");
   const [productID, setProductID] = useState(null);
@@ -20,7 +21,7 @@ const Amazon = () => {
         displayCart={displayCart}
         setDisplayCart={setDisplayCart}
         cart={cart} />
-      
+       
       <RefreshPage />
       <RecentSearch />
       <Products query={query} setQuery={setQuery} cart={cart}  setCart={setCart} displayCart={displayCart}/>

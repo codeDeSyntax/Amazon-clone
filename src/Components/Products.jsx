@@ -62,6 +62,8 @@ const Products = ({ query, productID, cart, setCart, displayCart }) => {
     console.log(cart);
   };
 
+  
+
   const renderProducts = () => {
     let filteredProducts = products;
 
@@ -84,7 +86,7 @@ const Products = ({ query, productID, cart, setCart, displayCart }) => {
     return filteredProducts.map((product) => (
       <div
         key={product.id}
-        className="flex flex-col h-62 xxs:w-[80vw] cs:w-[95%] xs:w-[45vw] sm:w-48 lg:w-66  md:h-72  md:w-64  xl:w-68 md:shadow-none border md:hover:bg-[#141B24] p-2  md:justify-center items-center md:hover:scale-125 hover:z-110 transition lg:hover:rounded-md m-auto "
+        className="flex flex-col h-62 xxs:w-[80vw] cs:w-[95%] xs:w-[45vw] sm:w-48 lg:w-66  md:h-72  md:w-64  xl:w-68 md:shadow-none border md:hover:bg-[#141B24] p-2  md:justify-center items-center md:hover:scale-105 hover:z-110 transition lg:hover:rounded-md m-auto "
       >
         <img
           src={product.image}
@@ -92,7 +94,7 @@ const Products = ({ query, productID, cart, setCart, displayCart }) => {
           className=" size-20 h-[90px] w-[95px] md:h-[100px] md:w-[100px]"
         />
         <div className="w-full h-12">
-          <p className="text-[.7rem] mt-1 xxs:text-center">
+          <p className="text-[.8rem] mt-1 xxs:text-center font-mono">
             {product.title.substr(0, 30)}
           </p>
         </div>
@@ -127,7 +129,7 @@ const Products = ({ query, productID, cart, setCart, displayCart }) => {
   };
 
   return (
-    <section className=" w-full flex flex-col justify-center items-center">
+    <section className=" w-full flex flex-col justify-center items-center md:mt-[4rem]">
       {/* Category buttons */}
       <div className="my-4 w-[95%] m-auto flex flex-wrap justify-center gap-1 ">
         {/* All category button */}
@@ -151,8 +153,14 @@ const Products = ({ query, productID, cart, setCart, displayCart }) => {
       </div>
       <div>{}</div>
       {/* Render products */}
-      <div className=" grid xxs:grid-cols-1 cs:grid-cols-2 gap-1     sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-1 md:gap-2  mt-10 ">
-        {displayCart ? <Cart cart={cart} /> : renderProducts()}
+      <div
+        className={`${
+          !displayCart
+            ? "grid xxs:grid-cols-1 cs:grid-cols-2 gap-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-1 md:gap-2  mt-10 mb-10"
+            : " w-full"
+        } `}
+      >
+        {displayCart ? <Cart cart={cart} setCart={setCart} /> : renderProducts()}
       </div>
     </section>
   );
