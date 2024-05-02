@@ -8,7 +8,7 @@ const RefreshPage = () => {
   var settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -55,7 +55,7 @@ const RefreshPage = () => {
     // </div>
 
     <div className="w-full h-[40vh] bg-red-500  ">
-      <Slider {...settings} className="bg-green-500 ">
+      <Slider {...settings} className=" ">
         <div className="bg-[url(https://m.media-amazon.com/images/I/71VBt4eTg3L._SX3000_.jpghttps://m.media-amazon.com/images/I/71VBt4eTg3L._SX3000_.jpg)]  md:h-[50vh] h-[40vh] bg-contain md:bg-cover">
           <h3>1</h3>
         </div>

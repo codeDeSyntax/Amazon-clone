@@ -9,7 +9,7 @@ const Cart = ({ cart, setCart }) => {
   };
 
   return (
-    <div className=" w-[95%] m-auto flex sm:flex-row  flex-col-reverse">
+    <div className=" w-[95%] m-auto flex md:flex-row  flex-col-reverse">
       <div className=" md:w-[70%] p-4 flex flex-col gap-4  ">
         <div className="p-3 border rounded-t-md ">
           <h2 className="text-gray-600">items ({cart.length})</h2>
